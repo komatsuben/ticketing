@@ -1,5 +1,4 @@
 "use client"
-
 import React from "react"
 
 export function TicketCard({ seat, onSelect }) {
@@ -25,9 +24,10 @@ export function TicketCard({ seat, onSelect }) {
   return (
     <div
       className={`
-        w-12 h-12 rounded-lg flex items-center justify-center
+        w-10 h-10 rounded-lg flex items-center justify-center
         text-white text-xs font-semibold transition-colors duration-200
         ${getStatusColor()}
+        mx-1 // This adds 4px margin on left and right (total 8px gap between cards)
       `}
       onClick={handleClick}
       title={`Seat ${seat.id} - ${seat.status}`}

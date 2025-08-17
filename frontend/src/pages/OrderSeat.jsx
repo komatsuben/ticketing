@@ -4,23 +4,23 @@ import { useState } from "react"
 import { TicketGrid } from "../components/TicketGrid"
 
 const generateSeats = () => {
-const seats = []
+    const seats = []
 
-for (let row = 1; row <= 25; row++) {
-    for (let col = 1; col <= 20; col++) {
-    const seatId = `${String.fromCharCode(64 + row)}${col}`
-    // Randomly assign status with higher probability for available seats
-    const randomStatus = Math.random()
-    let status
+    for (let row = 1; row <= 25; row++) {
+        for (let col = 1; col <= 20; col++) {
+        const seatId = `${String.fromCharCode(64 + row)}${col}`
+        // Randomly assign status with higher probability for available seats
+        const randomStatus = Math.random()
+        let status
 
-    if (randomStatus < 0.7) status = "available"
-    else if (randomStatus < 0.85) status = "pending"
-    else status = "taken"
+        if (randomStatus < 0.7) status = "available"
+        else if (randomStatus < 0.85) status = "pending"
+        else status = "taken"
 
-    seats.push({
-        id: seatId,
-        status,
-    })
+        seats.push({
+            id: seatId,
+            status,
+        })
     }
 }
 
@@ -53,8 +53,6 @@ const handleSeatSelect = (seatId) => {
 return (
     <main className="min-h-screen bg-background">
     <div className="container mx-auto py-8">
-        <TicketGrid seats={seats} onSelect={handleSeatSelect} rows={25} columns={20} />
-
         {selectedSeats.length > 0 && (
         <div className="mt-6 p-4 bg-card rounded-lg border">
             <h3 className="font-semibold mb-2">Selected Seats:</h3>
@@ -64,6 +62,9 @@ return (
             </p>
         </div>
         )}
+        
+        <TicketGrid seats={seats} onSelect={handleSeatSelect} rows={25} columns={20} />
+
     </div>
     </main>
 )
